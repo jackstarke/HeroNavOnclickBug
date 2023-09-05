@@ -1,0 +1,64 @@
+﻿@inherits LayoutComponentBase
+@attribute [RenderModeServer]
+
+@switch (SelectedNav)
+{
+    case 1:
+        {
+
+            <HeroNavOnclickBug.Pages.Components.Nav.Nav1 />
+            break;
+        }
+    case 2:
+        {
+            <HeroNavOnclickBug.Pages.Components.Nav.Nav2 />
+            break;
+        }
+    default:
+        {
+            <HeroNavOnclickBug.Pages.Components.Nav.Nav1 />
+            break;
+        }
+}
+@switch (SelectedHero)
+{
+    case 1:
+        {
+            <HeroNavOnclickBug.Pages.Components.Hero.Hero1 />
+            break;
+        }
+    case 2:
+        {
+            <HeroNavOnclickBug.Pages.Components.Hero.Hero2 />
+            break;
+        }
+    default:
+        {
+            <HeroNavOnclickBug.Pages.Components.Hero.Hero1 />
+            break;
+        }
+}  
+
+@code {
+    public int SelectedNav { get; set; }
+    public int SelectedHero { get; set; }
+    protected override Task OnInitializedAsync()
+    {
+        // show bug 
+        var showBug = true;
+
+        // using hero1 causing the issue, I don't have anything special with in that page
+        if (showBug)
+        {
+            SelectedNav = 2;
+            SelectedHero = 1;
+        }
+        else
+        {
+            SelectedNav = 2;
+            SelectedHero = 2;
+        }
+ 
+        return base.OnInitializedAsync();
+    }
+}
